@@ -6,12 +6,18 @@ import com.activos.Repository.ReferenciaLaboralRepository;
 import com.activos.Repository.ReferenciaLaboralRepositoryCursor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.StoredProcedureQuery;
 import java.util.List;
 
 
 @Service
+@Transactional
 public class ReferenciaLaboralService {
+    @Autowired
+    EntityManager entityManager;
 
     @Autowired
     ReferenciaLaboralRepository referenciaLaboralRepository;
@@ -29,6 +35,12 @@ public class ReferenciaLaboralService {
 
     public Persona getByPersona(String id){
         return referenciaLaboralRepositoryCursor.findCarsAfterYear(id);
+    }
+
+    public List<Empresa> getEmpresa(String id){
+        StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("ObtenerEmpresa");
+        query.setParameter("EMPRESA", id);
+        return query.getResultList();
     }
 
 

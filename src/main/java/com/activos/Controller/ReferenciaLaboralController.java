@@ -33,8 +33,7 @@ public class ReferenciaLaboralController {
     @GetMapping("/Empresa/{id}")
     public ResponseEntity<List<Empresa>> getEmpresa(@PathVariable("id") String name ){
         System.out.println(name);
-        List<Empresa> empresa= referenciaLaboralService.getById(name);
-        System.out.println(empresa.get(0).getEMP_ND());
+        List<Empresa> empresa= referenciaLaboralService.getEmpresa(name);
         return new ResponseEntity(empresa, HttpStatus.OK);
     }
 
