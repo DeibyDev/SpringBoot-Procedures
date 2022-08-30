@@ -6,6 +6,7 @@ import groovy.transform.builder.Builder;
 public class EmpresaVo {
 
 
+
     private String TDC_TD;
 
     private Integer EMP_ND;
